@@ -1,16 +1,13 @@
 package com.example.airtime.payments.payload;
 
 import com.example.airtime.payments.entity.Role;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Set;
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class UserRequest {
 
     private Long id;
@@ -21,6 +18,6 @@ public class UserRequest {
 
     private String password;
 
-    private Set<Role> roles;
+    private Role roles;
 
 }

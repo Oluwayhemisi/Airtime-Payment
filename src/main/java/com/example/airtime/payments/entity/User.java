@@ -33,17 +33,15 @@ public class User {
     @CreationTimestamp
     private LocalDate dateJoined;
 
-    @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(value = EnumType.STRING)
-   private Set<Role> roles;
+   private Role roles;
 
     public User( String userName, String lastName, String email, String password,  Role role) {
         this.userName = userName;
         this.email = email;
         this.password = password;
         if (roles == null) {
-            roles = new HashSet<>();
+            roles = role;
         }
-        roles.add(role);
     }
 }

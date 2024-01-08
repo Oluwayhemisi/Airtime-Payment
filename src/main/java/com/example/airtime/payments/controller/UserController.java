@@ -5,6 +5,7 @@ import com.example.airtime.payments.exceptions.UserException;
 import com.example.airtime.payments.payload.LoginRequest;
 import com.example.airtime.payments.payload.LoginResponseDto;
 import com.example.airtime.payments.payload.UserRequest;
+import com.example.airtime.payments.payload.UserResponse;
 import com.example.airtime.payments.service.UserService;
 import com.example.airtime.payments.usersecurity.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -32,8 +33,8 @@ public class UserController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<String> Register(@Valid @RequestBody UserRequest userDto){
-        String response = userService.register(userDto);
+    public ResponseEntity<UserResponse> Register(@Valid @RequestBody UserRequest userDto){
+        UserResponse response = userService.register(userDto);
          return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
@@ -43,9 +44,6 @@ public class UserController {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
         User user = userService.findUserByEmail(loginDto.getEmail());
-//        if (!user) {
-//            throw new StyleMeException("Email is not verified", HttpStatus.UNAUTHORIZED);
-//        }
         SecurityContextHolder.getContext().setAuthentication(authentication);
         final String token = tokenProvider.generateJWTToken(authentication);
         LoginResponseDto loginResponseDto = new LoginResponseDto();

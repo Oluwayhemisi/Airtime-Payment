@@ -4,8 +4,10 @@ import com.example.airtime.payments.entity.Role;
 import com.example.airtime.payments.entity.User;
 import com.example.airtime.payments.exceptions.UserException;
 import com.example.airtime.payments.payload.UserRequest;
+import com.example.airtime.payments.payload.UserResponse;
 import com.example.airtime.payments.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -25,6 +27,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final ModelMapper modelMapper;
 
 
 
@@ -47,18 +50,22 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 
     @Override
-    public String register(UserRequest userDto) throws UserException {
+    public UserResponse register(UserRequest userDto) throws UserException {
     validateIfUserExist(userDto);
     User user = new User();
     user.setEmail(userDto.getEmail());
     user.setUserName(userDto.getUserName());
     user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
 
-        Set<Role> roles = new HashSet<>();
-        roles.add(Role.ROLE_USER);
-        user.setRoles(roles);
-        userRepository.save(user);
-        return "User Registered successfully";
+        user.setRoles(Role.ROLE_USER);
+       User savedUser = userRepository.save(user);
+
+        return modelMapper.map(savedUser, UserResponse.class);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
     @Override

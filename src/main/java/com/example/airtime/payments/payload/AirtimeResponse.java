@@ -7,9 +7,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class AirtimeResponse {
 
-    private Long id;
     private String referenceId;
     private String responseCode;
     private String responseMessage;

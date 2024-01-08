@@ -1,7 +1,6 @@
 package com.example.airtime.payments.payload;
 
 
-import com.example.airtime.payments.entity.AirtimeDetails;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,10 +10,13 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class AirtimeRequest {
     private String requestId;
+    private String uniqueCode;
     private String phoneNumber;
     private BigDecimal amount;
-    private String uniqueCode;
+
 
 }

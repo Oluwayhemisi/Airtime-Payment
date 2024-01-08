@@ -1,5 +1,6 @@
 package com.example.airtime.payments.config;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +18,12 @@ import static org.springframework.http.HttpMethod.*;
 
 @Configuration
 public class ConfigApp {
+
+    @Bean
+    public ModelMapper modelMapper(){
+        return new ModelMapper();
+    }
+
 
 
     @Bean

@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Set;
 
 
 @Getter
@@ -18,13 +17,12 @@ public class UserResponse {
 
     private Long id;
 
-    private String firstName;
 
-    private String lastName;
+    private String userName;
 
     private String email;
 
     private LocalDate dateJoined;
 
-    private Set<Role> roles;
+    private Role roles;
 }
