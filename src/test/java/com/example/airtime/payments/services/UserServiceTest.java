@@ -38,12 +38,12 @@ public class UserServiceTest {
     @Test
     void testToCreateRegisterUser(){
         createUser();
-        assertEquals(9,userService.getAllUsers().size());
+        assertEquals(14,userService.getAllUsers().size());
 
     }
     private UserResponse createUser() throws UserException {
         UserRequest userRequest = new UserRequest();
-        userRequest.setEmail("aisha@gmail.com");
+        userRequest.setEmail("aiisha@gmail.com");
         userRequest.setUserName("Addah");
         userRequest.setPassword("5555");
         userRequest.setRoles(Role.ROLE_USER);

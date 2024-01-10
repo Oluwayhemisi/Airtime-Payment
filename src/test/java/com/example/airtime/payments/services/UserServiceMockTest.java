@@ -56,7 +56,7 @@ public class UserServiceMockTest {
         UserRequest userRequest = new UserRequest(4L,"yem", "haley@gmail.com",  "1234", Role.ROLE_USER);
         User savedUser = new User();
         savedUser.setId(4L);
-        savedUser.setEmail("haley@gmail.com");
+        savedUser.setEmail("haey@gmail.com");
         savedUser.setUserName("yem");
 
         when(userRepository.findByEmail(anyString())).thenReturn(Optional.empty());
