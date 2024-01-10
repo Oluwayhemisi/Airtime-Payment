@@ -9,6 +9,7 @@ import com.example.airtime.payments.payload.AirtimeResponse;
 import com.example.airtime.payments.repository.AirtimeRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -27,8 +28,10 @@ import static com.example.airtime.payments.utils.PaymentHash.generatePayload;
 @RequiredArgsConstructor
 public class AirtimeServiceImpl implements AirtimeService {
 
-    private final WebClient webClient;
-    private final AirtimeRepository airtimeRepository;
+    private final   WebClient webClient;
+
+    private final   AirtimeRepository airtimeRepository;
+
 
 
     @Value("${app.xpress.authorizationHeaderValue}")

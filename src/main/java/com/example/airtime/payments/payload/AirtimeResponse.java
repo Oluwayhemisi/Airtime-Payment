@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AirtimeResponse {
 
+    private String requestId;
     private String referenceId;
     private String responseCode;
     private String responseMessage;
